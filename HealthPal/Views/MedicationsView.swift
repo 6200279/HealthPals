@@ -128,35 +128,6 @@ struct MedicationRowView: View {
     }
 }
 
-// Placeholder for Add Medication View
-struct AddMedicationView: View {
-    @Environment(\.dismiss) private var dismiss
-    
-    var body: some View {
-        NavigationView {
-            VStack {
-                Text("Add Medication")
-                    .font(.title)
-                    .padding()
-                
-                Text("Medication form will be implemented in the next phase")
-                    .foregroundColor(.secondary)
-                    .padding()
-                
-                Spacer()
-            }
-            .navigationTitle("New Medication")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button("Cancel") {
-                        dismiss()
-                    }
-                }
-            }
-        }
-    }
-}
 
 #Preview {
     MedicationsView()
