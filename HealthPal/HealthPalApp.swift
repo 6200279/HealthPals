@@ -12,7 +12,12 @@ import SwiftData
 struct HealthPalApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            Item.self,
+            Medication.self,
+            ReminderTime.self,
+            SymptomEntry.self,
+            AdherenceLog.self,
+            SnoozeEntry.self,
+            UserPreferences.self
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
