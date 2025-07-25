@@ -13,6 +13,7 @@ struct TodayView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var medications: [Medication]
     @Query private var adherenceLogs: [AdherenceLog]
+    @Query private var symptomEntries: [SymptomEntry]
     @Query private var userPreferences: [UserPreferences]
     
     @State private var showingSymptomCheck = false
@@ -208,8 +209,8 @@ struct TodayView: View {
     
     private var hasLoggedSymptomsToday: Bool {
         let today = Calendar.current.startOfDay(for: Date())
-        return adherenceLogs.contains { log in
-            Calendar.current.isDate(log.loggedTime, inSameDayAs: today)
+        return symptomEntries.contains { entry in
+            Calendar.current.isDate(entry.date, inSameDayAs: today)
         }
     }
     
@@ -295,5 +296,5 @@ struct TodayView: View {
 
 #Preview {
     TodayView()
-        .modelContainer(for: [Medication.self, AdherenceLog.self, UserPreferences.self], inMemory: true)
+        .modelContainer(for: [Medication.self, AdherenceLog.self, SymptomEntry.self, UserPreferences.self], inMemory: true)
 }
