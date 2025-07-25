@@ -24,11 +24,21 @@ final class HealthPalUITests: XCTestCase {
 
     @MainActor
     func testExample() throws {
-        // UI tests must launch the application that they test.
+        let app = XCUIApplication()
+        app.launch()
+        XCTAssertTrue(app.navigationBars["Today"].waitForExistence(timeout: 2))
+    }
+
+    @MainActor
+    func testTabNavigation() throws {
         let app = XCUIApplication()
         app.launch()
 
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        XCTAssertTrue(app.navigationBars["Today"].waitForExistence(timeout: 2))
+        app.tabBars.buttons["Medications"].tap()
+        XCTAssertTrue(app.navigationBars["My Medications"].waitForExistence(timeout: 2))
+        app.tabBars.buttons["Settings"].tap()
+        XCTAssertTrue(app.navigationBars["Settings"].waitForExistence(timeout: 2))
     }
 
     @MainActor
@@ -39,3 +49,4 @@ final class HealthPalUITests: XCTestCase {
         }
     }
 }
+
