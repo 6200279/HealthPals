@@ -7,6 +7,12 @@
 
 import SwiftUI
 import SwiftData
+import OSLog
+
+private let symptomLogger = Logger(
+    subsystem: Bundle.main.bundleIdentifier ?? "HealthPal",
+    category: "QuickSymptomCheckView"
+)
 
 struct QuickSymptomCheckView: View {
     @Environment(\.modelContext) private var modelContext
@@ -231,7 +237,7 @@ struct QuickSymptomCheckView: View {
             try modelContext.save()
             dismiss()
         } catch {
-            print("Error saving symptom entry: \(error)")
+            symptomLogger.error("Error saving symptom entry: \(error.localizedDescription)")
         }
     }
 }

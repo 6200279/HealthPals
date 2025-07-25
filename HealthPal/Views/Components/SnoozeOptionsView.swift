@@ -6,6 +6,12 @@
 //
 
 import SwiftUI
+import OSLog
+
+private let snoozeLogger = Logger(
+    subsystem: Bundle.main.bundleIdentifier ?? "HealthPal",
+    category: "SnoozeOptionsView"
+)
 
 struct SnoozeOptionsView: View {
     let medication: Medication
@@ -227,7 +233,7 @@ struct DelayReasonPickerView: View {
         medication: medication,
         reminderTime: reminderTime,
         onSnooze: { duration, reason in
-            print("Snoozed for \(duration) minutes, reason: \(reason?.displayName ?? "none")")
+            snoozeLogger.info("Snoozed for \(duration) minutes, reason: \(reason?.displayName ?? "none")")
         }
     )
 }

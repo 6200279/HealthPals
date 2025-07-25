@@ -8,6 +8,12 @@
 
 import SwiftUI
 import SwiftData
+import OSLog
+
+private let medicationLogger = Logger(
+    subsystem: Bundle.main.bundleIdentifier ?? "HealthPal",
+    category: "MedicationCardView"
+)
 
 struct MedicationCardView: View {
     @Environment(\.modelContext) private var modelContext
@@ -381,7 +387,7 @@ struct MedicationCardView: View {
     private func scheduleSnoozeNotification(duration: Int) {
         // This would integrate with UNUserNotificationCenter
         // For now, just a placeholder
-        print("Scheduling snooze notification for \(duration) minutes")
+        medicationLogger.info("Scheduling snooze notification for \(duration) minutes")
     }
 }
 
